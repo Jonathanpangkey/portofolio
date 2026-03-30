@@ -1,14 +1,14 @@
 "use client";
-import { Briefcase, Calendar, MapPin, ArrowRight } from "lucide-react";
-import { motion, useInView, type Variants } from "framer-motion";
-import { useRef } from "react";
+import {Briefcase, Calendar, MapPin, ArrowRight, Trophy, Star} from "lucide-react";
+import {motion, useInView, type Variants} from "framer-motion";
+import {useRef} from "react";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: {opacity: 0, y: 40},
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
+    transition: {duration: 0.7, ease: [0.22, 1, 0.36, 1], delay},
   }),
 };
 
@@ -20,24 +20,24 @@ const cardVariants: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: {duration: 0.7, ease: [0.22, 1, 0.36, 1]},
   },
 };
 
 const dotVariants: Variants = {
-  hidden: { scale: 0, opacity: 0 },
+  hidden: {scale: 0, opacity: 0},
   visible: {
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.4, ease: "backOut" },
+    transition: {duration: 0.4, ease: "backOut"},
   },
 };
 
 const lineVariants: Variants = {
-  hidden: { scaleY: 0, originY: 0 },
+  hidden: {scaleY: 0, originY: 0},
   visible: {
     scaleY: 1,
-    transition: { duration: 1.2, ease: "easeInOut" },
+    transition: {duration: 1.2, ease: "easeInOut"},
   },
 };
 
@@ -49,8 +49,7 @@ const experiences = [
     location: "Jakarta, Indonesia",
     period: "Nov 2024 - Present",
     type: "Internship - Kemnaker",
-    description:
-      "Building and maintaining fullstack web platforms with focus on backend optimization, database handling, and deployment automation.",
+    description: "Building and maintaining fullstack web platforms with focus on backend optimization, database handling, and deployment automation.",
     responsibilities: [
       "Built and maintained fullstack web platforms using Laravel, Next.js, Supabase, and MySQL",
       "Implemented new features and improved performance through backend optimization and database handling",
@@ -138,87 +137,90 @@ const experiences = [
   },
 ];
 
-// Each card has its own useInView so it animates independently on scroll
-const ExperienceCard = ({
-  exp,
-  index,
-}: {
-  exp: (typeof experiences)[0];
-  index: number;
-}) => {
+const achievements = [
+  {
+    icon: "🏆",
+    title: "PKM – Gagasan Futuristik",
+    subtitle: "Program Kreativitas Mahasiswa · Kemendikbud",
+    desc: "Received research funding from the Ministry of Education for a futuristic concept proposal.",
+    year: "2024",
+  },
+  {
+    icon: "🌐",
+    title: "Creator Muda Academy",
+    subtitle: "Maarif Institute · Google.org · Mading Sekolah",
+    desc: "Selected participant in a digital content creation program backed by Google.org.",
+    year: "2019",
+  },
+  {
+    icon: "🥇",
+    title: "Siswa Kristen Berprestasi Provinsi",
+    subtitle: "Tingkat SMA · Sulawesi Utara",
+    desc: "Awarded as a talented and high-achieving Christian student at provincial level.",
+    year: "2021",
+  },
+];
+
+const ExperienceCard = ({exp, index}: {exp: (typeof experiences)[0]; index: number}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, {once: true, margin: "-80px"});
   const isEven = index % 2 === 0;
 
   return (
-    <div
-      ref={ref}
-      className={`relative flex flex-col md:flex-row gap-8 ${isEven ? "md:flex-row-reverse" : ""}`}
-    >
+    <div ref={ref} className={`relative flex flex-col md:flex-row gap-8 ${isEven ? "md:flex-row-reverse" : ""}`}>
       {/* Timeline Dot */}
       <motion.div
         variants={dotVariants}
-        initial="hidden"
+        initial='hidden'
         animate={isInView ? "visible" : "hidden"}
-        className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-linear-to-br from-accent to-primary shadow-lg shadow-accent/50 z-10"
-      >
-        <div className="absolute inset-0 rounded-full bg-linear-to-br from-accent to-primary animate-ping opacity-20" />
+        className='hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-linear-to-br from-accent to-primary shadow-lg shadow-accent/50 z-10'>
+        <div className='absolute inset-0 rounded-full bg-linear-to-br from-accent to-primary animate-ping opacity-20' />
       </motion.div>
 
       {/* Content Card */}
       <motion.div
         custom={isEven}
         variants={cardVariants}
-        initial="hidden"
+        initial='hidden'
         animate={isInView ? "visible" : "hidden"}
-        className={`flex-1 ${isEven ? "md:text-right" : ""}`}
-      >
+        className={`flex-1 ${isEven ? "md:text-right" : ""}`}>
         <motion.div
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.25 }}
-          className={`group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 transition-colors duration-300 hover:bg-white/10 hover:border-accent/50 ${
+          whileHover={{y: -4}}
+          transition={{duration: 0.25}}
+          className={`group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 transition-colors duration-300 hover:bg-white/[0.07] hover:border-accent/50 ${
             exp.current ? "ring-2 ring-accent/30" : ""
-          }`}
-        >
+          }`}>
           {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-start justify-between mb-3">
+          <div className='mb-6'>
+            <div className='flex items-start justify-between mb-3'>
               <div className={`flex-1 ${isEven ? "md:text-right" : ""}`}>
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
-                  {exp.role}
-                </h3>
+                <h3 className='text-2xl font-bold text-white mb-2 group-hover:text-accent transition-colors'>{exp.role}</h3>
                 <div className={`flex items-center gap-2 text-white/60 mb-2 ${isEven ? "md:justify-end" : ""}`}>
-                  <Briefcase className="w-4 h-4" />
-                  <span className="font-semibold text-white/90">{exp.company}</span>
-                  {exp.current && (
-                    <span className="ml-2 text-xs bg-accent text-white px-2 py-1 rounded-full">
-                      Current
-                    </span>
-                  )}
+                  <Briefcase className='w-4 h-4' />
+                  <span className='font-semibold text-white/90'>{exp.company}</span>
+                  {exp.current && <span className='ml-2 text-xs bg-accent text-white px-2 py-1 rounded-full'>Current</span>}
                 </div>
               </div>
             </div>
 
             <div className={`flex flex-wrap gap-4 text-sm text-white/60 ${isEven ? "md:justify-end" : ""}`}>
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
+              <div className='flex items-center gap-1'>
+                <Calendar className='w-4 h-4' />
                 <span>{exp.period}</span>
               </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
+              <div className='flex items-center gap-1'>
+                <MapPin className='w-4 h-4' />
                 <span>{exp.location}</span>
               </div>
-              <span className="px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/30">
-                {exp.type}
-              </span>
+              <span className='px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/30'>{exp.type}</span>
             </div>
           </div>
 
-          {/* Description */}
-          <p className="text-white/70 leading-relaxed mb-6">{exp.description}</p>
+          {/* Description — white/70 → white/85 */}
+          <p className='text-white/85 leading-relaxed mb-6'>{exp.description}</p>
 
           {/* Responsibilities */}
-          <div className="mb-6">
+          <div className='mb-6'>
             <h4 className={`text-white font-semibold mb-3 flex items-center gap-2 ${isEven ? "md:justify-end" : ""}`}>
               <ArrowRight className={`w-4 h-4 text-accent ${isEven ? "md:order-2" : ""}`} />
               <span>Key Responsibilities</span>
@@ -227,13 +229,12 @@ const ExperienceCard = ({
               {exp.responsibilities.map((resp, idx) => (
                 <motion.li
                   key={idx}
-                  initial={{ opacity: 0, x: isEven ? 20 : -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.2 + idx * 0.07, duration: 0.4 }}
-                  className="text-white/60 text-sm leading-relaxed flex items-start gap-2"
-                >
-                  <span className={`w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0 ${isEven ? "md:order-2" : ""}`} />
-                  <span className="flex-1">{resp}</span>
+                  initial={{opacity: 0, x: isEven ? 20 : -20}}
+                  animate={isInView ? {opacity: 1, x: 0} : {}}
+                  transition={{delay: 0.2 + idx * 0.07, duration: 0.4}}
+                  className='text-white/80 text-sm leading-relaxed flex items-start gap-2'>
+                  <span className={`w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0 ${isEven ? "md:order-2" : ""}`} />
+                  <span className='flex-1'>{resp}</span>
                 </motion.li>
               ))}
             </ul>
@@ -241,17 +242,16 @@ const ExperienceCard = ({
 
           {/* Technologies */}
           <div>
-            <h4 className="text-white font-semibold mb-3">Technologies Used</h4>
+            <h4 className='text-white font-semibold mb-3'>Technologies Used</h4>
             <div className={`flex flex-wrap gap-2 ${isEven ? "md:justify-end" : ""}`}>
               {exp.technologies.map((tech, idx) => (
                 <motion.span
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.3 + idx * 0.05, duration: 0.35 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 hover:border-accent/50 hover:text-accent transition-colors cursor-default"
-                >
+                  initial={{opacity: 0, scale: 0.8}}
+                  animate={isInView ? {opacity: 1, scale: 1} : {}}
+                  transition={{delay: 0.3 + idx * 0.05, duration: 0.35}}
+                  whileHover={{scale: 1.1}}
+                  className='text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 hover:border-accent/50 hover:text-accent transition-colors cursor-default'>
                   {tech}
                 </motion.span>
               ))}
@@ -261,106 +261,148 @@ const ExperienceCard = ({
       </motion.div>
 
       {/* Spacer */}
-      <div className="hidden md:block flex-1" />
+      <div className='hidden md:block flex-1' />
     </div>
+  );
+};
+
+const AchievementCard = ({item, index}: {item: (typeof achievements)[0]; index: number}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {once: true, margin: "-60px"});
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{opacity: 0, y: 30}}
+      animate={isInView ? {opacity: 1, y: 0} : {}}
+      transition={{duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.08}}
+      whileHover={{y: -4}}
+      className='group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-accent/40 hover:bg-white/[0.07] transition-all duration-300'>
+      {/* Year badge */}
+      <span className='absolute top-4 right-4 text-xs font-semibold text-white/30 tabular-nums'>{item.year}</span>
+
+      {/* Icon */}
+      <div
+        className='w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4'
+        style={{
+          background: "rgba(255,255,255,0.05)",
+          border: "1px solid rgba(255,255,255,0.1)",
+        }}>
+        {item.icon}
+      </div>
+
+      <h4 className='text-white font-bold text-base mb-1 group-hover:text-accent transition-colors'>{item.title}</h4>
+      <p className='text-accent/70 text-xs font-medium mb-2 leading-snug'>{item.subtitle}</p>
+      {/* Achievement desc — white/50 → white/70 */}
+      <p className='text-white/70 text-sm leading-relaxed'>{item.desc}</p>
+    </motion.div>
   );
 };
 
 export const Experience = () => {
   const headerRef = useRef(null);
-  const headerInView = useInView(headerRef, { once: true, margin: "-80px" });
+  const headerInView = useInView(headerRef, {once: true, margin: "-80px"});
 
   const lineRef = useRef(null);
-  const lineInView = useInView(lineRef, { once: true, margin: "-80px" });
+  const lineInView = useInView(lineRef, {once: true, margin: "-80px"});
 
-  const ctaRef = useRef(null);
-  const ctaInView = useInView(ctaRef, { once: true, margin: "-80px" });
+  const achieveRef = useRef(null);
+  const achieveInView = useInView(achieveRef, {once: true, margin: "-80px"});
 
   return (
-    <section
-      id="experience"
-      className="relative py-24 px-6 overflow-hidden bg-background-dark"
-    >
+    <section id='experience' className='relative py-24 px-6 overflow-hidden bg-background-dark'>
       {/* Background blobs */}
       <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/4 left-1/3 w-125 h-125 bg-accent/8 rounded-full blur-3xl"
+        animate={{scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5]}}
+        transition={{duration: 9, repeat: Infinity, ease: "easeInOut"}}
+        className='absolute top-1/4 left-1/3 w-125 h-125 bg-accent/8 rounded-full blur-3xl'
       />
       <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 4.5 }}
-        className="absolute bottom-1/4 right-1/3 w-125 h-125 bg-primary/8 rounded-full blur-3xl"
+        animate={{scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5]}}
+        transition={{duration: 9, repeat: Infinity, ease: "easeInOut", delay: 4.5}}
+        className='absolute bottom-1/4 right-1/3 w-125 h-125 bg-primary/8 rounded-full blur-3xl'
       />
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16" ref={headerRef}>
+      <div className='relative max-w-7xl mx-auto'>
+        {/* ── Section Header ── */}
+        <div className='text-center mb-16' ref={headerRef}>
           <motion.span
             variants={fadeUp}
-            initial="hidden"
+            initial='hidden'
             animate={headerInView ? "visible" : "hidden"}
             custom={0}
-            className="text-accent text-sm font-semibold tracking-wider uppercase mb-4 block"
-          >
+            className='text-accent text-sm font-semibold tracking-wider uppercase mb-4 block'>
             CAREER JOURNEY
           </motion.span>
           <motion.h2
             variants={fadeUp}
-            initial="hidden"
+            initial='hidden'
             animate={headerInView ? "visible" : "hidden"}
             custom={0.1}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
-            <span className="text-white">Professional </span>
-            <span className="bg-linear-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-              Experience
-            </span>
+            className='text-4xl md:text-5xl font-bold mb-6'>
+            <span className='text-white'>Professional </span>
+            <span className='bg-linear-to-r from-accent via-primary to-accent bg-clip-text text-transparent'>Experience</span>
           </motion.h2>
           <motion.p
             variants={fadeUp}
-            initial="hidden"
+            initial='hidden'
             animate={headerInView ? "visible" : "hidden"}
             custom={0.2}
-            className="text-white/70 text-lg max-w-2xl mx-auto"
-          >
-            My journey through fintech, cybersecurity, and software development,
-            delivering scalable and performant web applications.
+            className='text-white/70 text-lg max-w-2xl mx-auto'>
+            My journey through fintech, cybersecurity, and software development, delivering scalable and performant web applications.
           </motion.p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative" ref={lineRef}>
+        {/* ── Timeline ── */}
+        <div className='relative' ref={lineRef}>
           <motion.div
             variants={lineVariants}
-            initial="hidden"
+            initial='hidden'
             animate={lineInView ? "visible" : "hidden"}
-            className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-accent via-primary to-accent opacity-20"
+            className='hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-linear-to-b from-accent via-primary to-accent opacity-20'
           />
-
-          <div className="space-y-12">
+          <div className='space-y-12'>
             {experiences.map((exp, index) => (
               <ExperienceCard key={exp.id} exp={exp} index={index} />
             ))}
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16" ref={ctaRef}>
-          <motion.a
-            href="/resume.pdf"
-            download
-            variants={fadeUp}
-            initial="hidden"
-            animate={ctaInView ? "visible" : "hidden"}
-            custom={0}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg"
-          >
-            Download Full Resume
-            <ArrowRight className="w-5 h-5" />
-          </motion.a>
+        {/* ── Achievements ── */}
+        <div className='mt-24' ref={achieveRef}>
+          {/* Sub-header */}
+          <div className='flex items-center gap-4 mb-10'>
+            <motion.div
+              initial={{opacity: 0, x: -20}}
+              animate={achieveInView ? {opacity: 1, x: 0} : {}}
+              transition={{duration: 0.6}}
+              className='flex items-center gap-3'>
+              <div
+                className='w-10 h-10 rounded-xl flex items-center justify-center'
+                style={{background: "linear-gradient(135deg, rgba(99,202,183,.2), rgba(37,99,235,.2))", border: "1px solid rgba(99,202,183,.3)"}}>
+                <Trophy className='w-5 h-5 text-accent' />
+              </div>
+              <div>
+                <p className='text-accent text-xs font-semibold tracking-widest uppercase'>Recognition</p>
+                <h3 className='text-white text-2xl font-bold'>Achievements</h3>
+              </div>
+            </motion.div>
+
+            {/* Divider line */}
+            <motion.div
+              initial={{scaleX: 0, originX: 0}}
+              animate={achieveInView ? {scaleX: 1} : {}}
+              transition={{duration: 0.8, delay: 0.2}}
+              className='flex-1 h-px bg-linear-to-r from-accent/30 to-transparent'
+            />
+          </div>
+
+          {/* Cards grid */}
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+            {achievements.map((item, i) => (
+              <AchievementCard key={i} item={item} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

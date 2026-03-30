@@ -79,7 +79,6 @@ export const About = () => {
         </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20'>
-          {/* Profile Image */}
           <motion.div
             variants={fadeLeft}
             initial='hidden'
@@ -97,7 +96,6 @@ export const About = () => {
             </div>
           </motion.div>
 
-          {/* Text Content */}
           <motion.div
             variants={fadeRight}
             initial='hidden'

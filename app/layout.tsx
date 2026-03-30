@@ -1,5 +1,5 @@
-import type {Metadata} from "next";
-import {Geist, PT_Serif} from "next/font/google";
+import type { Metadata } from "next";
+import { Geist, PT_Serif } from "next/font/google";
 import "./globals.css";
 
 const ptSerif = PT_Serif({
@@ -14,14 +14,16 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Toko Tembaga | Kerajinan Tembaga & Kuningan",
-  description: "Pusat kerajinan tembaga dan kuningan kualitas premium.",
+  title: "Jonathan Andreas",
+  description: "Showcasing my work as a software developer and freelancer.",
 };
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='id'>
-      <body className={`${geistSans.variable} ${ptSerif.variable} font-sans antialiased`}>{children}</body>
+    <html lang="en">
+      <body className={`${geistSans.variable} ${ptSerif.variable} font-sans antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
