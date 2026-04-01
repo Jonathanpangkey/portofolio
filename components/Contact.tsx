@@ -107,7 +107,7 @@ export const Contact = () => {
                   target='_blank'
                   rel='noopener noreferrer'
                   className='group flex items-center gap-4 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-300 hover:bg-white/10'>
-                  <div className='w-12 h-12 bg-linear-to-br from-accent to-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform'>
+                  <div className='w-12 h-12 bg-linear-to-br from-accent to-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform hidden sm:flex'>
                     <div className='text-white'>{item.icon}</div>
                   </div>
                   <div>
